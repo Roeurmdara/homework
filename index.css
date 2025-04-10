@@ -1,0 +1,181 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #001d;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.app-container {
+  max-width: 420px;
+  margin: 20px auto;
+  background-color: #173454;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  height: 30px;
+  margin-right: 10px;
+}
+.icons i {
+  margin-left: 15px;
+  cursor: pointer;
+}
+/* PROFILE */
+.profile-section {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+.avatar {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 15px;
+}
+.profile-text {
+  line-height: 1.3;
+}
+
+.profile-text a {
+  color: #add8e6;
+  text-decoration: none;
+  font-size: 14px;
+}
+/* ACCOUNTS CARD */
+.accounts-card {
+  display: flex;
+  justify-content: space-between;
+  background-color: #043e7a;
+  border-radius: 15px;
+  padding: px;
+  margin-bottom: 10px;
+  border: 2px solid #00bfff;
+}
+/* MENU GRID */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+/* MENU GRID */
+.card {
+  padding: 5px 0px 10px 0px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.menu-button {
+  background-color: #122a44;
+  border: 2px solid #1abbff;
+  border-radius: 15px;
+  padding: 20px 10px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.balance-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 2px;
+}
+.menu-button1 i {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.menu-button i {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.accounts-card {
+  background-color: #122a44;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 700px;
+  padding: 20px;
+  border: 2px solid #1abbff;
+}
+.total {
+  font-size: 18px;
+}
+.amount {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.R {
+  text-align: end;
+  color: white;
+  filter: blur(3px);
+}
+.D {
+  text-align: end;
+  color: #00bfff;
+  filter: blur(3px);
+}
+/* MENU BUTTONS */
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.menu-button-horizontal {
+  background-color: #122a44;
+  border: 2px solid #00aaff;
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.menu-button-horizontal i {
+  font-size: 24px;
+  margin-right: 15px;
+  color: white;
+}
+.logo img {
+  height: auto;
+  max-width: 150px;
+}
+.currency-usd {
+  font-size: 13px;
+}
+
+.icons i {
+  font-size: 30px;
+  margin-left: 15px;
+  cursor: pointer;
+  color: white;
+}
+.currency-r {
+  font-size: 20px;
+}
