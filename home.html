@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khmer Calendar - March 2025</title>
+
+    <!-- Add Google Fonts for Khmer support -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanuman:wght@400;700&family=Battambang:wght@400;700&family=Moul&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Battambang", "Hanuman", Arial, sans-serif;
+        background-color: rgba(143, 215, 143, 0.429);
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .main-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        margin-bottom: 5px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-family: "Battambang", serif;
+      }
+
+      .container {
+        max-width: 1200px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      .calendar-container {
+        flex: 1;
+      }
+
+      .events-container {
+        flex: 0 0 250px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+      }
+
+      /* Table styling for calendar */
+      table.calendar {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      table.calendar th {
+        background-color: #0c8a0c;
+        color: white;
+        text-align: center;
+        padding: 15px 10px;
+        border: 1px solid white;
+        font-family: "Battambang", serif;
+      }
+
+      table.calendar td {
+        background-color: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        padding: 10px;
+        text-align: center;
+        height: 60px;
+
+        transition: background-color 0.3s ease;
+      }
+
+      table.calendar td.current-month {
+        background-color: rgb(255, 255, 255);
+      }
+
+      table.calendar td.current-month:hover {
+        background-color: #bdf6c5cb;
+        cursor: pointer;
+        transform: scale(1.02);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        position: relative;
+      }
+
+      .gregorian {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .gregorian.highlighted {
+        color: blue;
+      }
+
+      .gregorian.holiday {
+        color: red;
+      }
+
+      .SmallBlue {
+        font-size: 0.8rem;
+        color: blue;
+      }
+      .SmallRed {
+        font-size: 0.8rem;
+        color: rgb(255, 0, 0);
+      }
+      .lunar {
+        font-size: 0.8rem;
+        color: #666;
+      }
+
+      .holiday-marker {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background-color: #ffd700;
+        border-radius: 50%;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+
+      .events-container h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #0c8a0c;
+        color: #0c8a0c;
+        font-family: "Battambang", serif;
+      }
+
+      .event-item {
+        display: flex;
+        align-items: center;
+        padding: 0px 10px 0px 0px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border: 1px solid #dddddd51;
+        border-radius: 8px;
+        background-color: white;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .event-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .event-marker {
+        width: 5px;
+        height: 60px;
+        background-color: #0057b8;
+        margin-right: 10px;
+        border-radius: 5px;
+        margin: 5px px px 0;
+      }
+
+      .event-marker.red {
+        background-color: #ff0000;
+      }
+
+      .event-text {
+        font-size: 0.9rem;
+        flex: 1;
+      }
+
+      /* Previous/next month styling */
+      .prev-month,
+      .next-month {
+        background-color: #f0f0f0 !important;
+        color: #999;
+      }
+
+      /* Media query for responsive design */
+      @media (max-width: 768px) {
+        .content-wrapper {
+          flex-direction: column;
+        }
+
+        .events-container {
+          flex: 0 0 auto;
+          width: 100%;
+          margin-top: 20px;
+        }
+
+        .header {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .header h1:last-child {
+          margin-top: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="header">
+        <h1>ខែ March 2025</h1>
+        <h1>ចន្ទ - គេតុ ទុតិយ ព.ស. ២៥៦៨</h1>
+      </div>
+      <div class="container">
+        <div class="content-wrapper">
+          <div class="calendar-container">
+            <table class="calendar">
+              <thead>
+                <tr>
+                  <th>អាទិត្យ </th>
+                  <th>ចន្ទ </th>
+                  <th>អង្គារ </th>
+                  <th>ពុធ </th>
+                  <th>ព្រហស្បតិ៍ </th>
+                  <th>សុក្រ </th>
+                  <th>សៅរ៍ </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Week 1 -->
+                <tr>
+                  <td class="prev-month">
+                    <div class="gregorian">23</div>
+                    <div class="lunar">១៣ កើត</div>
+                  </td>
+                  <td class="prev-month">
+                    <div class="gregorian highlighted">24</div>
+                    <div class="SmallBlue">១៤ កើត</div>
+                  </td>
+                  <td class="prev-month">
+                    <div class="gregorian">25</div>
+                    <div class="lunar">១៥ កើត</div>
+                  </td>
+                  <td class="prev-month">
+                    <div class="gregorian">
+                      26
+                      <img
+                        src="./buddha.png"
+                        alt="Holiday"
+                        width="15"
+                        height="15"
+                      />
+                    </div>
+                    <div class="lunar">១ កើត</div>
+                  </td>
+                  <td class="prev-month">
+                    <div class="gregorian">27</div>
+                    <div class="lunar">២ កើត</div>
+                  </td>
+                  <td class="prev-month">
+                    <div class="gregorian">28</div>
+                    <div class="lunar">៣ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">1</div>
+                    <div class="lunar">៥ កើត</div>
+                  </td>
+                </tr>
+
+                <!-- Week 2 -->
+                <tr>
+                  <td class="current-month weekend">
+                    <div class="gregorian">2</div>
+                    <div class="lunar">៦ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian highlighted">3</div>
+                    <div class="SmallBlue">៧ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">4</div>
+                    <div class="lunar">៨ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">5</div>
+                    <div class="lunar">៩ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">
+                      6
+                      <img
+                        src="./buddha.png"
+                        alt="Holiday"
+                        width="15"
+                        height="15"
+                      />
+                    </div>
+                    <div class="lunar">១០ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">7</div>
+                    <div class="lunar">១១ កើត</div>
+                  </td>
+                  <td class="current-month weekend">
+                    <div class="gregorian holiday">8</div>
+                    <div class="SmallRed">១២ កើត</div>
+                  </td>
+                </tr>
+
+                <!-- Week 3 -->
+                <tr>
+                  <td class="current-month weekend">
+                    <div class="gregorian">9</div>
+                    <div class="lunar">១៣ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">10</div>
+                    <div class="lunar">១៤ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">11</div>
+                    <div class="lunar">១៥ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">12</div>
+                    <div class="lunar">១ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">
+                      13
+                      <img
+                        src="./buddha.png"
+                        alt="Holiday"
+                        width="15"
+                        height="15"
+                      />
+                    </div>
+                    <div class="lunar">២ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">14</div>
+                    <div class="lunar">៣ រោច</div>
+                  </td>
+                  <td class="current-month weekend">
+                    <div class="gregorian">15</div>
+                    <div class="lunar">៤ រោច</div>
+                  </td>
+                </tr>
+
+                <!-- Week 4 -->
+                <tr>
+                  <td class="current-month weekend">
+                    <div class="gregorian">16</div>
+                    <div class="lunar">៥ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">17</div>
+                    <div class="lunar">៦ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">18</div>
+                    <div class="lunar">៧ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">19</div>
+                    <div class="lunar">៨ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">20</div>
+                    <div class="lunar">៩ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">
+                      21
+                      <img
+                        src="./buddha.png"
+                        alt="Holiday"
+                        width="15"
+                        height="15"
+                      />
+                    </div>
+                    <div class="lunar">១០ រោច</div>
+                  </td>
+                  <td class="current-month weekend">
+                    <div class="gregorian highlighted">22</div>
+                    <div class="SmallBlue">១១ រោច</div>
+                  </td>
+                </tr>
+
+                <!-- Week 5 -->
+                <tr>
+                  <td class="current-month weekend">
+                    <div class="gregorian">23</div>
+                    <div class="lunar">១២ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian highlighted">24</div>
+                    <div class="SmallBlue">១៣ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">25</div>
+                    <div class="lunar">១៤ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">26</div>
+                    <div class="lunar">១៥ រោច</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">27</div>
+                    <div class="lunar">១ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">
+                      28
+                      <img
+                        src="./buddha.png"
+                        alt="Holiday"
+                        width="15"
+                        height="15"
+                      />
+                    </div>
+                    <div class="lunar">២ កើត</div>
+                  </td>
+                  <td class="current-month weekend">
+                    <div class="gregorian">29</div>
+                    <div class="lunar">៣ កើត</div>
+                  </td>
+                </tr>
+
+                <!-- Week 6 -->
+                <tr>
+                  <td class="current-month weekend">
+                    <div class="gregorian">30</div>
+                    <div class="lunar">៤ កើត</div>
+                  </td>
+                  <td class="current-month">
+                    <div class="gregorian">31</div>
+                    <div class="lunar">៥ កើត</div>
+                  </td>
+                  <td class="next-month">
+                    <div class="gregorian">1</div>
+                    <div class="lunar">៦ កើត</div>
+                  </td>
+                  <td class="next-month">
+                    <div class="gregorian">2</div>
+                    <div class="lunar">៧ កើត</div>
+                  </td>
+                  <td class="next-month">
+                    <div class="gregorian">3</div>
+                    <div class="lunar">៨ កើត</div>
+                  </td>
+                  <td class="next-month">
+                    <div class="gregorian">4</div>
+                    <div class="lunar">៩ កើត</div>
+                  </td>
+                  <td class="next-month">
+                    <div class="gregorian">5</div>
+                    <div class="lunar">១០ កើត</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="events-container">
+            <h3>ព្រឹត្តិការណ៍សំខាន់ៗ</h3>
+            <div class="event-item">
+              <div class="event-marker"></div>
+              <div class="event-text">
+                3 មីនា - ទិវាវប្បធម៌ជាតិ (National Culture Day)
+              </div>
+            </div>
+            <div class="event-item">
+              <div class="event-marker"></div>
+              <div class="event-text">
+                4 មីនា - ទិវាគោលនយោបាយទឹក (Water Policy Day)
+              </div>
+            </div>
+            <div class="event-item">
+              <div class="event-marker red"></div>
+              <div class="event-text">
+                8 មីនា - ទិវាស្ត្រីអន្តរជាតិ (International Women's Day)
+              </div>
+            </div>
+            <div class="event-item">
+              <div class="event-marker"></div>
+              <div class="event-text">
+                22 មីនា - ទិវាទឹកពិភពលោក និងឧតុនិយមពិភពលោក (World Water and
+                World Meteorological Day)
+              </div>
+            </div>
+            <div class="event-item">
+              <div class="event-marker"></div>
+              <div class="event-text">
+                24 មីនា - ទិវារេបងពិភពលោក (World Tuberculosis Day)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer style="text-align: center; margin-top: 20px;">
+      <p>© រក្សាសិទ្ធិដោយ​​ វិទ្យាស្ថាន​ សាយអិនស៍​ អេន​ ថេកណឡជី​ អ៊ែតវ៉ានស៍​ ឌីវេឡុបមុិន​​​​ ( ISTAD )</p>
